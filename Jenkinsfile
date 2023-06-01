@@ -27,7 +27,7 @@ pipeline {
 
                 printenv | grep EXAMPLE_CREDS
 
-                echo 'we're good'
+                echo "we're good"
                 '''
             }
         }
