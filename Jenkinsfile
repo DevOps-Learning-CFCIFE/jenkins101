@@ -22,7 +22,11 @@ pipeline {
 		stage('credentials') {
             steps {
                 /* CORRECT */
-                sh'printenv | grep EXAMPLE_CREDS'
+                sh'''
+                ls -al
+                
+                printenv | grep EXAMPLE_CREDS
+                '''
             }
         }
     }
