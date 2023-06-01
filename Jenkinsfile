@@ -26,8 +26,6 @@ pipeline {
                 ls -al
 
                 printenv | grep EXAMPLE_CREDS
-
-                echo "we're good"
                 '''
             }
         }
