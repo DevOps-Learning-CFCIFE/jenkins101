@@ -25,6 +25,8 @@ pipeline {
                 sh'''
                 ls -al
 
+                pwd
+
                 printenv | grep EXAMPLE_CREDS
                 '''
             }
