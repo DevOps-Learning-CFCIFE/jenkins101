@@ -19,16 +19,10 @@ pipeline {
                 echo 'Deploy....'
             }
         }
-        stage('wrongExample') {
-            steps {
-                /* WRONG! */
-                sh("curl -u ${EXAMPLE_CREDS_USR}:${EXAMPLE_CREDS_PSW} https://example.com/")
-            }
-        }
-		stage('RightExample') {
+		stage('credentials') {
             steps {
                 /* CORRECT */
-                sh('curl -u $EXAMPLE_CREDS_USR:$EXAMPLE_CREDS_PSW https://example.com/')
+                sh'printenv | grep EXAMPLE_CREDS'
             }
         }
     }
