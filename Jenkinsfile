@@ -23,6 +23,7 @@ pipeline {
             steps {
                 /* CORRECT */
                 sh'''
+                echo "i can build"
                 ls -al
 
                 pwd
