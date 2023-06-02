@@ -38,7 +38,8 @@ pipeline {
             emailext (
                 to: 'aboludepeter@gmail.com',
                 subject: 'Build Successful: ${currentBuild.fullDisplayName}',
-                body: 'The build ${currentBuild.fullDisplayName} succeeded.'
+                body: 'The build ${currentBuild.fullDisplayName} succeeded.',
+                recipientProviders: [developers()]
             )
         }
     }
