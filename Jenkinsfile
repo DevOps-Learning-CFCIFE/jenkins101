@@ -18,6 +18,7 @@ pipeline {
         stage('Deploy') {
             steps {
                 echo 'Deploy....'
+                echo "Building"
             }
         }
 		stage('credentials') {
