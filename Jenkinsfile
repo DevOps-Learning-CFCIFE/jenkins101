@@ -7,7 +7,6 @@ pipeline {
         stage('Build') {
             steps {
                 echo "Building.."
-                echo "checking!!!"
             }
         }
         stage('Test') {
