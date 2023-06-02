@@ -1,12 +1,14 @@
 pipeline {
     agent any
     environment {
-        EXAMPLE_CREDS = credentials('example-credentials-id')
+        NEW_VERSION = '1.3.0'
+        // EXAMPLE_CREDS = credentials('example-credentials-id')
     }
     stages {
         stage('Build') {
             steps {
                 echo "Building.."
+                echo "version is ${NEW_VERSION}"
             }
         }
         stage('Test') {
@@ -16,31 +18,13 @@ pipeline {
         }
         stage('Deploy') {
             steps {
-                echo "Deploy...."
+                echo "Deploy.."
+                withCredentials([
+                    usernamePassword(credentials: 'example-credentials-id', usernameVariable: USER, passwordVariable: PWD)
+                ]){
+                    sh "some script ${USER} ${PWD}"
+                }
             }
-        }
-		stage('credentials') {
-            steps {
-                /* CORRECT */
-                sh'''
-                echo "i can build"
-                ls -al
-
-                pwd
-
-                printenv | grep EXAMPLE_CREDS
-                '''
-            }
-        }
-    }
-    post {
-        success {
-            emailext (
-                to: 'aboludepeter@gmail.com',
-                subject: 'Build Successful: ${currentBuild.fullDisplayName}',
-                body: 'The build ${currentBuild.fullDisplayName} succeeded.',
-                recipientProviders: [developers()]
-            )
         }
     }
 }
