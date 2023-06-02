@@ -35,9 +35,11 @@ pipeline {
     }
     post {
         success {
-            emailext subject: 'Build Successful: ${currentBuild.fullDisplayName}',
-                      body: 'The build ${currentBuild.fullDisplayName} succeeded.',
-                      recipientProviders: [[$class: 'CulpritsRecipientProvider']]
+            emailext (
+                to: 'aboludepeter@gmail.com',
+                subject: 'Build Successful: ${currentBuild.fullDisplayName}',
+                body: 'The build ${currentBuild.fullDisplayName} succeeded.'
+            )
         }
     }
 }
