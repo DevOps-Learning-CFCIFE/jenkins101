@@ -1,5 +1,5 @@
 pipeline {
-    agent {label 'docker-agent-python'}
+    agent {label 'docker-agent'}
     environment {
         EXAMPLE_CREDS = credentials('example-credentials-id')
     }
