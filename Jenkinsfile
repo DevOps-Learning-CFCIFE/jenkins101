@@ -7,7 +7,6 @@ pipeline {
         stage('Build') {
             steps {
                 echo "Building.."
-                echo "Asukwo in charge..."
             }
         }
         stage('Test') {
@@ -17,8 +16,7 @@ pipeline {
         }
         stage('Deploy') {
             steps {
-                echo 'Deploy....'
-                echo "Building"
+                echo "Deploy...."
             }
         }
 		stage('credentials') {
@@ -33,6 +31,13 @@ pipeline {
                 printenv | grep EXAMPLE_CREDS
                 '''
             }
+        }
+    }
+    post {
+        success {
+            emailext subject: 'Build Successful: ${currentBuild.fullDisplayName}',
+                      body: 'The build ${currentBuild.fullDisplayName} succeeded.',
+                      recipientProviders: [[$class: 'CulpritsRecipientProvider']]
         }
     }
 }
